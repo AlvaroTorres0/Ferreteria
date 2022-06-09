@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="forms.css" />
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+
+<body>
+    <div id="respuesta">
+        hola
+    </div>
+    <ul class="tabs">
+
+        <li class="tab">
+            <input type="radio" name="tabs" checked="checked" id="tab1" />
+            <label for="tab1">Insertar</label>
+            <div id="tab-content1" class="content">
+
+                <form method="post" name="formDatosPersonales" id="Venta">
+                    <h2>Insertar datos en Venta</h2>
+                    <div class="grid">
+
+                        <img src="img/invoice.png">
+                        <input type="number" name="folioventa" id="folioventa" placeholder="folio de la venta"
+                            required />
+
+                        <img src="img/id.png">
+                        <input type="text" name="id_cliente" id="id_cliente" placeholder="ID del Cliente" />
+
+                        <img src="img/aprobado.png">
+                        <input type="text" name="id_producto" id="id_producto" placeholder="Id del producto" />
+
+                        <img src="img/id.png">
+                        <input type="text" name="num_empleado" id="num_empleado" placeholder="numero de empleado" />
+
+                        <img src="img/calendario.png">
+                        <input type="date" name="fecha" id="fecha" placeholder="Fecha" />
+
+
+
+                        <img src="img/cantidad.png">
+                        <input type="number" name="Cantidad" id="Cantidad" placeholder="Cantidad" />
+
+                        <img src="img/price-tag.png">
+                        <input type="number" name="Total" id="Total" placeholder="Total" />
+
+                    </div>
+
+                    <button type="button" id="Crear">Enviar datos</button>
+                </form>
+            </div>
+        </li>
+
+        <li class="tab">
+            <input type="radio" name="tabs" id="tab2" />
+            <label for="tab2">Modificar</label>
+            <div id="tab-content2" class="content">
+                <div id="respuesta1"></div>
+                <button id="consultar">Consultar datos</button>
+            </div>
+        </li>
+
+        <li class="tab">
+            <input type="radio" name="tabs" id="tab3" />
+            <label for="tab3">Buscar</label>
+            <div id="tab-content3" class="content">
+
+            </div>
+        </li>
+
+        <li class="tab">
+            <input type="radio" name="tabs" id="tab4" />
+            <label for="tab4">Eliminar</label>
+            <div id="tab-content4" class="content">
+
+            </div>
+        </li>
+
+    </ul>
+</body>
+<script>
+    $('#Crear').click(function () {
+        $.ajax({
+            url: 'php/inserciones/insertar_venta.php',
+            type: 'POST',
+            data: $('#Venta').serialize(),
+            success: function (res) {
+                $('#respuesta').html(res);
+            }
+        });
+    });
+
+    $('#consultar').click(function () {
+        $.ajax({
+            url: 'php/consultas/consultar_venta.php',
+            type: 'GET',
+            success: function (res) {
+                $('#respuesta1').html(res);
+            }
+        });
+    });
+</script>
+
+</html>

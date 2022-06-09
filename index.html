@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<body>
+    <nav class="menu">
+        <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+        <label class="menu-open-button" for="menu-open">
+            <span class="lines line-1"></span>
+            <span class="lines line-2"></span>
+            <span class="lines line-3"></span>
+        </label>
+        <a href="#" class="menu-item blue"> <i id="Crear"> Crear BD</i></a>
+        <a href="Producto.html" class="menu-item green"> <i id="Tabla_1"></i> Producto</a>
+        <a href="Venta.html" class="menu-item red"> <i id="Tabla_2"></i> Venta </a>
+        <a href="Cliente.html" class="menu-item purple"> <i id="Tabla_3"></i> Cliente </a>
+        <a href="Empleado.html" class="menu-item orange"> <i id="Tabla_4"></i> Empleado </a>
+        <a href="Aval.html" class="menu-item lightblue"> <i id="Tabla_5"></i> Aval </a>
+    </nav>
+    <div id="respuesta">
+
+    </div>
+</body>
+<script>
+    $('#Crear').click(function () {
+        $.ajax({
+            url: 'crear.php',
+            type: 'POST',
+            data: $('#Creardb').serialize(),
+            success: function (res) {
+                $('#respuesta').html(res);
+            }
+        });
+    });
+</script>
+
+</html>

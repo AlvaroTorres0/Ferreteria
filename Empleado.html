@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="forms.css" />
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+
+<body>
+    <div id="respuesta">
+        hola
+    </div>
+    <ul class="tabs">
+
+        <li class="tab">
+            <input type="radio" name="tabs" checked="checked" id="tab1" />
+            <label for="tab1">Insertar</label>
+            <div id="tab-content1" class="content">
+
+                <form method="post" name="formDatosPersonales" id="Empleados">
+                    <h2>Insertar datos en Empleado</h2>
+                    <div class="grid">
+
+                        <img src="img/id.png">
+                        <input type="text" name="num_empleado" id="num_empleado" placeholder="Numero del Cliente" />
+
+                        <img src="img/user.png">
+                        <input type="text" name="nombre" id="nombre" placeholder="Nombre" />
+
+                        <img src="img/user.png">
+                        <input type="text" name="apepat" id="apellidos" placeholder="1r Apellido" />
+                        <img src="img/user.png">
+                        <input type="text" name="apemat" id="apellidos" placeholder="2nd Apellido" />
+
+                        <img src="img/location.png">
+                        <input type="text" name="municipio" id="asunto" placeholder="Municipio" />
+
+                        <img src="img/location.png">
+                        <input type="text" name="calleynum" id="asunto" placeholder="Calle y numero" />
+
+                        <img src="img/location.png">
+                        <input type="text" name="colonia" id="asunto" placeholder="Colonia" />
+
+                        <img src="img/employee.png">
+                        <input type="text" name="Cargo" id="Cargo" placeholder="Cargo" />
+
+                        <img src="img/salary.png">
+                        <input type="number" name="salario" id="salario" placeholder="Salario" required />
+
+                        <img src="img/counter.png">
+                        <input type="number" name="noCuenta" id="noCuenta" placeholder="Numero de cuenta" required />
+
+                        <img src="img/phone-call.png">
+                        <input type="Number" name="Telefono1" id="email" placeholder="Telefono" required />
+                        <img src="img/phone-call.png">
+                        <input type="Number" name="Telefono2" id="email" placeholder="Telefono" required />
+
+                        <img src="img/email.png">
+                        <input type="email" name="email" id="email" placeholder="email" required />
+
+                        <img src="img/checked.png">
+                        <input type="number" name="status" id="status" placeholder="Satus" required min="0" max="1" />
+                    </div>
+
+                    <button type="button" id="Crear">Enviar datos</button>
+                </form>
+            </div>
+        </li>
+
+        <li class="tab">
+            <input type="radio" name="tabs" id="tab2" />
+            <label for="tab2">Modificar</label>
+            <div id="tab-content2" class="content">
+                <div id="respuesta1"></div>
+                <button id="consultar">Consultar datos</button>
+            </div>
+        </li>
+
+        <li class="tab">
+            <input type="radio" name="tabs" id="tab3" />
+            <label for="tab3">Buscar</label>
+            <div id="tab-content3" class="content">
+
+            </div>
+        </li>
+
+        <li class="tab">
+            <input type="radio" name="tabs" id="tab4" />
+            <label for="tab4">Eliminar</label>
+            <div id="tab-content4" class="content">
+
+            </div>
+        </li>
+
+    </ul>
+</body>
+<script>
+    $('#Crear').click(function () {
+        $.ajax({
+            url: 'php/inserciones/insertar_empleado.php',
+            type: 'POST',
+            data: $('#Empleados').serialize(),
+            success: function (res) {
+                $('#respuesta').html(res);
+            }
+        });
+    });
+
+
+    $('#consultar').click(function () {
+        $.ajax({
+            url: 'php/consultas/consultar_empleado.php',
+            type: 'GET',
+            success: function (res) {
+                $('#respuesta1').html(res);
+            }
+        });
+    });
+</script>
+
+</html>

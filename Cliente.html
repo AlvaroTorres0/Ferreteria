@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="forms.css" />
+
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+
+<body>
+    <div id="respuesta">
+        hola
+    </div>
+    <ul class="tabs">
+
+        <li class="tab">
+            <input type="radio" name="tabs" checked="checked" id="tab1" />
+            <label for="tab1">Insertar</label>
+            <div id="tab-content1" class="content">
+
+                <form method="post" name="formDatosPersonales" id="Clientes">
+
+                    <h2>Insertar datos en Cliente</h2>
+                    <div class="grid">
+
+                        <img src="img/id.png">
+                        <input type="text" name="id_cliente" id="id_cliente" placeholder="ID del Cliente" />
+
+                        <img src="img/user.png">
+                        <input type="text" name="nombre" id="nombre" placeholder="Nombre" />
+
+                        <img src="img/user.png">
+                        <input type="text" name="apepat" id="apellidos" placeholder="1r Apellido" />
+
+                        <img src="img/user.png">
+                        <input type="text" name="apemat" id="apellidos" placeholder="2nd Apellido" />
+
+                        <img src="img/phone-call.png">
+                        <input type="text" name="Tel" id="Tel" placeholder="Telefono" required />
+
+                        <img src="img/location.png">
+                        <input type="text" name="municipio" id="municipio" placeholder="Municipio" />
+
+                        <img src="img/location.png">
+                        <input type="text" name="calleynum" id="asunto" placeholder="Calle y numero" />
+
+                        <img src="img/mail.png">
+                        <input type="number" name="cp" id="cp" placeholder="Codigo Postal" required />
+
+
+                        <img src="img/email.png">
+                        <input type="email" name="email" id="email" placeholder="email" required />
+
+                        <img src="img/point.png">
+                        <input type="text" name="puntoscliente" id="puntoscliente" placeholder="Puntos del Cliente"
+                            required />
+
+                    </div>
+                    <button type="button" id="Crear">Enviar datos</button>
+                </form>
+            </div>
+        </li>
+
+        <li class="tab">
+            <input type="radio" name="tabs" id="tab2" />
+            <label for="tab2">Consultar</label>
+
+            <div id="tab-content2" class="content">
+                <div id="respuesta1"></div>
+                <button id="consultar">Consultar datos</button>
+            </div>
+        </li>
+
+        <li class="tab">
+            <input type="radio" name="tabs" id="tab3" />
+            <label for="tab3">Buscar</label>
+            <div id="tab-content3" class="content">
+
+            </div>
+        </li>
+
+        <li class="tab">
+            <input type="radio" name="tabs" id="tab4" />
+            <label for="tab4" id="Eliminar1"> Eliminar</label>
+            <div id="tab-content4" class="content">
+                <form method="post" id="Datos">
+                    Ingrese Codigo <input type="text" name="idCliente" required><br>
+                    <button type="button" id="Eliminar">Eliminar datos</button>
+                </form>
+                <div id="respuesta2"></div>
+                <div id="respuesta3"></div>
+            </div>
+        </li>
+
+    </ul>
+
+
+</body>
+<script>
+    $('#Crear').click(function () {
+        $.ajax({
+            url: 'php/inserciones/insertar_cliente.php',
+            type: 'POST',
+            data: $('#Clientes').serialize(),
+            success: function (res) {
+                $('#respuesta').html(res);
+            }
+        });
+    });
+
+
+    $('#consultar').click(function () {
+        $.ajax({
+            url: 'php/consultas/consultar_cliente.php',
+            type: 'GET',
+            success: function (res) {
+                $('#respuesta1').html(res);
+            }
+        });
+    });
+
+    $('#Eliminar').click(function () {
+        $.ajax({
+            url: 'eliminar_cliente.php',
+            type: 'POST',
+            data: $('#Datos').serialize(),
+            success: function (res) {
+                $('#respuesta2').html(res);
+            }
+        });
+    });
+    $('#Eliminar').click(function () {
+        $.ajax({
+            url: 'php/consultas/consultar_cliente.php',
+            type: 'GET',
+            success: function (res) {
+                $('#respuesta3').html(res);
+            }
+        });
+    });
+    $('#Eliminar1').click(function () {
+        $.ajax({
+            url: 'php/consultas/consultar_cliente.php',
+            type: 'GET',
+            success: function (res) {
+                $('#respuesta3').html(res);
+            }
+        });
+    });
+</script>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="forms.css" />
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+
+<body>
+    <div id="respuesta">
+        hola
+    </div>
+    <ul class="tabs">
+
+        <li class="tab">
+            <input type="radio" name="tabs" checked="checked" id="tab1" />
+            <label for="tab1">Insertar</label>
+            <div id="tab-content1" class="content">
+
+                <form method="post" name="formDatosPersonales" id="Producto">
+                    <h2>Insertar datos en Cliente</h2>
+                    <div class="grid">
+
+                        <img src="img/aprobado.png">
+                        <input type="text" name="id_producto" id="id_producto" placeholder="Codigo del Producto" />
+
+                        <img src="img/product.png">
+                        <input type="text" name="nombre" id="nombre" placeholder="Nombre" />
+
+                        <img src="img/paper.png">
+                        <input type="text" name="Descripcion" id="Descripcion" placeholder="Descripicion" />
+
+                        <img src="img/price-tag.png">
+                        <input type="text" name="Precio" id="Precio" placeholder="Precio" required />
+
+                        <img src="img/actual.png">
+                        <input type="text" name="Existencia" id="Existencia" placeholder="Existencia" />
+
+                        <img src="img/subfolder.png">
+                        <input type="text" name="Categoria" id="Categoria" placeholder="Categoria" />
+
+                        <img src="img/brand.png">
+                        <input type="text" name="Marca" id="Marca" placeholder="Marca" required />
+
+                        <img src="img/checked.png">
+                        <input type="number" name="status" id="status" placeholder="Satus" required min="0" max="1" />
+
+                        <img src="img/price-tag.png">
+                        <input type="text" name="Costo" id="Costo" placeholder="Costo" required />
+
+                        <img src="img/point.png">
+                        <input type="text" name="puntosproducto" id="puntosproducto" placeholder="Puntos del Producto"
+                            required />
+                    </div>
+
+                    <button type="button" id="Crear">Enviar datos</button>
+                </form>
+            </div>
+        </li>
+
+        <li class="tab">
+            <input type="radio" name="tabs" id="tab2" />
+            <label for="tab2">Modificar</label>
+            <div id="tab-content2" class="content">
+                <div id="respuesta1"></div>
+                <button id="consultar">Consultar datos</button>
+            </div>
+        </li>
+
+        <li class="tab">
+            <input type="radio" name="tabs" id="tab3" />
+            <label for="tab3">Buscar</label>
+            <div id="tab-content3" class="content">
+
+            </div>
+        </li>
+
+        <li class="tab">
+            <input type="radio" name="tabs" id="tab4" />
+            <label for="tab4">Eliminar</label>
+            <div id="tab-content4" class="content">
+
+            </div>
+        </li>
+
+    </ul>
+</body>
+<script>
+    $('#Crear').click(function () {
+        $.ajax({
+            url: 'php/inserciones/insertar_producto.php',
+            type: 'POST',
+            data: $('#Producto').serialize(),
+            success: function (res) {
+                $('#respuesta').html(res);
+            }
+        });
+    });
+
+
+    $('#consultar').click(function () {
+        $.ajax({
+            url: 'php/consultas/consultar_producto.php',
+            type: 'GET',
+            success: function (res) {
+                $('#respuesta1').html(res);
+            }
+        });
+    });
+</script>
+
+</html>
