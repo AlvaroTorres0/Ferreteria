@@ -22,7 +22,7 @@
             <div id="tab-content1" class="content">
 
                 <form method="post" name="formDatosPersonales" id="Producto">
-                    <h2>Insertar datos en Cliente</h2>
+                    <h2>Insertar datos en Producto</h2>
                     <div class="grid">
 
                         <img src="img/aprobado.png">
@@ -66,8 +66,12 @@
             <input type="radio" name="tabs" id="tab2" />
             <label for="tab2">Modificar</label>
             <div id="tab-content2" class="content">
-                <div id="respuesta1"></div>
-                <button id="consultar">Consultar datos</button>
+
+                    <div id="respuesta2"></div>
+                    <form method="post" id="Producto2">
+                        <input id="ID_producto" type="text" name="ID_producto" required placeholder="Código del producto: ">
+                        <button type="button" id="consultarID">Consultar información</button>
+                    </form>
             </div>
         </li>
 
@@ -75,7 +79,8 @@
             <input type="radio" name="tabs" id="tab3" />
             <label for="tab3">Buscar</label>
             <div id="tab-content3" class="content">
-
+                <div id="respuesta1"></div>
+                <button id="consultar">Consultar datos</button>
             </div>
         </li>
 
@@ -111,6 +116,19 @@
             }
         });
     });
+
+
+    $('#consultarID').click(function () {
+        $.ajax({
+            url: 'php/consultasID/consultar_producto.php',
+            type: 'POST',
+            data: $('#Producto2').serialize(),
+            success: function (res) {
+                $('#respuesta2').html(res);
+            }
+        });
+    });
+
 </script>
 
 </html>
