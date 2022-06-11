@@ -15,7 +15,8 @@ foreach ($conn->query($sql) as $row){
 
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 
-<form method="post" name="formDatosPersonales" id="Producto">
+tenemos que cambiar el nombre si no agarra el principal
+<form method="post" name="formDatosPersonales" id="ProductoActualizar">
                     <h2>Modifique los datos</h2>
                     <div class="grid">
 
@@ -55,19 +56,4 @@ foreach ($conn->query($sql) as $row){
 ?>
 
 </div>
-<button type="button" id="Modificar" style="width:200px;">Enviar datos</button>
 </form>
-
-<script>
-    $('#Modificar').click(function () {
-        $.ajax({
-            url: 'php/inserciones/insertar_producto.php',
-            type: 'POST',
-            data: $('#Producto').serialize(),
-            success: function (res) {
-                $('#respuesta').html(res);
-            }
-        });
-    });
-
-</script>

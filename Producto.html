@@ -71,6 +71,7 @@
                     <form method="post" id="Producto2">
                         <input id="ID_producto" type="text" name="ID_producto" required placeholder="Código del producto: ">
                         <button type="button" id="consultarID">Consultar información</button>
+                        <button type="button" id="Modificar" style="width:200px;">Actualizar datos</button>
                     </form>
             </div>
         </li>
@@ -120,7 +121,7 @@
 
     $('#consultarID').click(function () {
         $.ajax({
-            url: 'php/consultasID/consultar_producto.php',
+            url: 'php/modificaciones/consultar_producto.php',
             type: 'POST',
             data: $('#Producto2').serialize(),
             success: function (res) {
@@ -128,6 +129,19 @@
             }
         });
     });
+
+
+    $('#Modificar').click(function () {
+        $.ajax({
+            url: 'php/modificaciones/modificar_producto.php',
+            type: 'POST',
+            data: $('#ProductoActualizar').serialize(),
+            success: function (res) {
+                $('#respuesta').html(res);
+            }
+        });
+    });
+
 
 </script>
 
