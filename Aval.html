@@ -60,8 +60,14 @@
             <input type="radio" name="tabs" id="tab2" />
             <label for="tab2">Modificar</label>
             <div id="tab-content2" class="content">
-                <div id="respuesta1"></div>
-                <button id="consultar">Consultar datos</button>
+
+                <div id="respuesta2"></div>
+                    <form method="post" id="Aval2">
+                        <input id="noEmpleado" type="text" name="noEmpleado" required placeholder="Número del empleado: ">
+                        <button type="button" id="consultarAval">Consultar información</button>
+                        <button type="button" id="Modificar" style="width:200px;">Actualizar datos</button>
+                    </form>
+                
             </div>
         </li>
 
@@ -69,7 +75,8 @@
             <input type="radio" name="tabs" id="tab3" />
             <label for="tab3">Buscar</label>
             <div id="tab-content3" class="content">
-
+                <div id="respuesta1"></div>
+                <button id="consultar">Consultar datos</button>
             </div>
         </li>
 
@@ -108,6 +115,31 @@
             }
         });
     });
+
+
+    $('#consultarAval').click(function () {
+        $.ajax({
+            url: 'php/modificaciones/consultar_aval.php',
+            type: 'POST',
+            data: $('#Aval2').serialize(),
+            success: function (res) {
+                $('#respuesta2').html(res);
+            }
+        });
+    });
+
+
+    $('#Modificar').click(function () {
+        $.ajax({
+            url: 'php/modificaciones/modificar_aval.php',
+            type: 'POST',
+            data: $('#AvalActualizar').serialize(),
+            success: function (res) {
+                $('#respuesta').html(res);
+            }
+        });
+    });
+
 </script>
 
 </html>
