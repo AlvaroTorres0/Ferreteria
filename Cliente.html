@@ -68,11 +68,16 @@
 
         <li class="tab">
             <input type="radio" name="tabs" id="tab2" />
-            <label for="tab2">Consultar</label>
-
+            <label for="tab2">Modificar</label>
             <div id="tab-content2" class="content">
-                <div id="respuesta1"></div>
-                <button id="consultar">Consultar datos</button>
+
+                <div id="respuesta2"></div>
+                    <form method="post" id="Cliente2">
+                        <input id="noCliente" type="text" name="noCliente" required placeholder="ID del cliente: ">
+                        <button type="button" id="consultarCliente">Consultar información</button>
+                        <button type="button" id="Modificar" style="width:200px;">Actualizar datos</button>
+                    </form>
+                
             </div>
         </li>
 
@@ -80,6 +85,8 @@
             <input type="radio" name="tabs" id="tab3" />
             <label for="tab3">Buscar</label>
             <div id="tab-content3" class="content">
+                <div id="respuesta1"></div>
+                <button id="consultar">Consultar datos</button>
 
             </div>
         </li>
@@ -152,6 +159,31 @@
             }
         });
     });
+
+
+    $('#consultarCliente').click(function () {
+        $.ajax({
+            url: 'php/modificaciones/consultar_cliente.php',
+            type: 'POST',
+            data: $('#Cliente2').serialize(),
+            success: function (res) {
+                $('#respuesta2').html(res);
+            }
+        });
+    });
+
+
+    $('#Modificar').click(function () {
+        $.ajax({
+            url: 'php/modificaciones/modificar_cliente.php',
+            type: 'POST',
+            data: $('#ClienteActualizar').serialize(),
+            success: function (res) {
+                $('#respuesta').html(res);
+            }
+        });
+    });
+
 </script>
 
 </html>
