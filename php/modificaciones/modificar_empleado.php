@@ -22,13 +22,14 @@ $conn=Conectar();//variable que almacena la conexión ala base de datos
 
 // Check connection
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO ferreteria.empleado (noEmpleado, nombreEmpleado,apepatEmpleado,apematEmpleado,municipioEmpleado, calleynumEmpleado,coloniaEmpleado, cargo, salario, noCuenta, telefono1Empleado, telefono2Empleado, correoEmpleado, estatusEmpleado)
-        VALUES ('$num_empleado', '$nombre', '$apepat', '$apemat','$municipio','$calleynum','$colonia','$Cargo','$salario','$noCuenta','$Telefono1','$Telefono2','$email','$status')";
-if (mysqli_query($conn, $sql)) {
-    echo "Nuevo registro insertado con éxito";
+$sql = "UPDATE empleado SET noEmpleado = '$num_empleado',nombreEmpleado = '$nombre',apepatEmpleado = '$apepat',apematEmpleado = '$apemat',municipioEmpleado = '$municipio',calleynumEmpleado = '$calleynum',coloniaEmpleado = '$colonia',cargo = '$Cargo',salario = '$salario',noCuenta = '$noCuenta',telefono1Empleado = '$Telefono1',telefono2Empleado = '$Telefono2',correoEmpleado = '$email',estatusEmpleado = '$status' WHERE noEmpleado = '$num_empleado'";
+
+
+if(mysqli_query($conn, $sql)) {
+    echo "Modificado";
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
