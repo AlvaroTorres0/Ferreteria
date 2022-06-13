@@ -15,7 +15,6 @@ foreach ($conn->query($sql) as $row){
 
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 
-tenemos que cambiar el nombre si no agarra el principal
 <form method="post" name="formDatosAval" id="ClienteActualizar">
                     <h2>Modifique los datos</h2>
                     <div class="grid">
