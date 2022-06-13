@@ -4,7 +4,7 @@ function conectar(){
     $username = "root";
     $bdname= "ferreteria";
     $servername = "localhost";
-    $password = "sisekersuren";
+    $password = "keepcalmand";
 $conn = new mysqli($servername, $username, $password, $bdname);
 
 // Check connection

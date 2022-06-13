@@ -62,12 +62,12 @@
             <div id="tab-content2" class="content">
 
                 <div id="respuesta2"></div>
-                    <form method="post" id="Aval2">
-                        <input id="noEmpleado" type="text" name="noEmpleado" required placeholder="Número del empleado: ">
-                        <button type="button" id="consultarAval">Consultar información</button>
-                        <button type="button" id="Modificar" style="width:200px;">Actualizar datos</button>
-                    </form>
-                
+                <form method="post" id="Aval2">
+                    <input id="noEmpleado" type="text" name="noEmpleado" required placeholder="Número del empleado: ">
+                    <button type="button" id="consultarAval">Consultar información</button>
+                    <button type="button" id="Modificar" style="width:200px;">Actualizar datos</button>
+                </form>
+
             </div>
         </li>
 
@@ -84,7 +84,12 @@
             <input type="radio" name="tabs" id="tab4" />
             <label for="tab4">Eliminar</label>
             <div id="tab-content4" class="content">
-
+                <form method="post" id="Datos">
+                    Ingrese Codigo <input type="text" name="idEmpleadoAval" required><br>
+                    <button type="button" id="Eliminar">Eliminar datos</button>
+                </form>
+                <div id="respuesta2"></div>
+                <div id="respuesta3"></div>
             </div>
         </li>
 
@@ -136,6 +141,37 @@
             data: $('#AvalActualizar').serialize(),
             success: function (res) {
                 $('#respuesta').html(res);
+            }
+        });
+    });
+
+
+
+    $('#Eliminar').click(function () {
+        $.ajax({
+            url: 'php/eliminaciones/eliminar_aval.php',
+            type: 'POST',
+            data: $('#Datos').serialize(),
+            success: function (res) {
+                $('#respuesta2').html(res);
+            }
+        });
+    });
+    $('#Eliminar').click(function () {
+        $.ajax({
+            url: 'php/consultas/consultar_aval.php',
+            type: 'GET',
+            success: function (res) {
+                $('#respuesta3').html(res);
+            }
+        });
+    });
+    $('#Eliminar1').click(function () {
+        $.ajax({
+            url: 'php/consultas/consultar_aval.php',
+            type: 'GET',
+            success: function (res) {
+                $('#respuesta3').html(res);
             }
         });
     });

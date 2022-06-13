@@ -77,12 +77,12 @@
             <div id="tab-content2" class="content">
 
                 <div id="respuesta2"></div>
-                    <form method="post" id="Empleado2">
-                        <input id="noEmpleado" type="text" name="noEmpleado" required placeholder="ID del empleado: ">
-                        <button type="button" id="consultarEmpleado">Consultar información</button>
-                        <button type="button" id="Modificar" style="width:200px;">Actualizar datos</button>
-                    </form>
-                
+                <form method="post" id="Empleado2">
+                    <input id="noEmpleado" type="text" name="noEmpleado" required placeholder="ID del empleado: ">
+                    <button type="button" id="consultarEmpleado">Consultar información</button>
+                    <button type="button" id="Modificar" style="width:200px;">Actualizar datos</button>
+                </form>
+
             </div>
         </li>
 
@@ -99,7 +99,12 @@
             <input type="radio" name="tabs" id="tab4" />
             <label for="tab4">Eliminar</label>
             <div id="tab-content4" class="content">
-
+                <form method="post" id="Datos">
+                    Ingrese Codigo <input type="text" name="idEmpleado" required><br>
+                    <button type="button" id="Eliminar">Eliminar datos</button>
+                </form>
+                <div id="respuesta2"></div>
+                <div id="respuesta3"></div>
             </div>
         </li>
 
@@ -147,6 +152,36 @@
             data: $('#EmpleadoActualizar').serialize(),
             success: function (res) {
                 $('#respuesta').html(res);
+            }
+        });
+    });
+
+
+    $('#Eliminar').click(function () {
+        $.ajax({
+            url: 'php/eliminaciones/eliminar_empleado.php',
+            type: 'POST',
+            data: $('#Datos').serialize(),
+            success: function (res) {
+                $('#respuesta2').html(res);
+            }
+        });
+    });
+    $('#Eliminar').click(function () {
+        $.ajax({
+            url: 'php/consultas/consultar_empleado.php',
+            type: 'GET',
+            success: function (res) {
+                $('#respuesta3').html(res);
+            }
+        });
+    });
+    $('#Eliminar1').click(function () {
+        $.ajax({
+            url: 'php/consultas/consultar_empleado.php',
+            type: 'GET',
+            success: function (res) {
+                $('#respuesta3').html(res);
             }
         });
     });
