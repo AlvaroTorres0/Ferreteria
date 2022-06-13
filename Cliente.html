@@ -72,12 +72,12 @@
             <div id="tab-content2" class="content">
 
                 <div id="respuesta2"></div>
-                    <form method="post" id="Cliente2">
-                        <input id="noCliente" type="text" name="noCliente" required placeholder="ID del cliente: ">
-                        <button type="button" id="consultarCliente">Consultar información</button>
-                        <button type="button" id="Modificar" style="width:200px;">Actualizar datos</button>
-                    </form>
-                
+                <form method="post" id="Cliente2">
+                    <input id="noCliente" type="text" name="noCliente" required placeholder="ID del cliente: ">
+                    <button type="button" id="consultarCliente">Consultar información</button>
+                    <button type="button" id="Modificar" style="width:200px;">Actualizar datos</button>
+                </form>
+
             </div>
         </li>
 
@@ -133,7 +133,7 @@
 
     $('#Eliminar').click(function () {
         $.ajax({
-            url: 'eliminar_cliente.php',
+            url: 'php/eliminaciones/eliminar_cliente.php',
             type: 'POST',
             data: $('#Datos').serialize(),
             success: function (res) {

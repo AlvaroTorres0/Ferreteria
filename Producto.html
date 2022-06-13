@@ -67,12 +67,12 @@
             <label for="tab2">Modificar</label>
             <div id="tab-content2" class="content">
 
-                    <div id="respuesta2"></div>
-                    <form method="post" id="Producto2">
-                        <input id="ID_producto" type="text" name="ID_producto" required placeholder="Código del producto: ">
-                        <button type="button" id="consultarID">Consultar información</button>
-                        <button type="button" id="Modificar" style="width:200px;">Actualizar datos</button>
-                    </form>
+                <div id="respuesta2"></div>
+                <form method="post" id="Producto2">
+                    <input id="ID_producto" type="text" name="ID_producto" required placeholder="Código del producto: ">
+                    <button type="button" id="consultarID">Consultar información</button>
+                    <button type="button" id="Modificar" style="width:200px;">Actualizar datos</button>
+                </form>
             </div>
         </li>
 
@@ -89,7 +89,12 @@
             <input type="radio" name="tabs" id="tab4" />
             <label for="tab4">Eliminar</label>
             <div id="tab-content4" class="content">
-
+                <form method="post" id="Datos">
+                    Ingrese Codigo <input type="text" name="idProducto" required><br>
+                    <button type="button" id="Eliminar">Eliminar datos</button>
+                </form>
+                <div id="respuesta2"></div>
+                <div id="respuesta3"></div>
             </div>
         </li>
 
@@ -138,6 +143,36 @@
             data: $('#ProductoActualizar').serialize(),
             success: function (res) {
                 $('#respuesta').html(res);
+            }
+        });
+    });
+
+
+    $('#Eliminar').click(function () {
+        $.ajax({
+            url: 'php/eliminaciones/eliminar_producto.php',
+            type: 'POST',
+            data: $('#Datos').serialize(),
+            success: function (res) {
+                $('#respuesta2').html(res);
+            }
+        });
+    });
+    $('#Eliminar').click(function () {
+        $.ajax({
+            url: 'php/consultas/consultar_producto.php',
+            type: 'GET',
+            success: function (res) {
+                $('#respuesta3').html(res);
+            }
+        });
+    });
+    $('#Eliminar1').click(function () {
+        $.ajax({
+            url: 'php/consultas/consultar_producto.php',
+            type: 'GET',
+            success: function (res) {
+                $('#respuesta3').html(res);
             }
         });
     });
